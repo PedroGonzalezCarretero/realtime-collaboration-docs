@@ -1,17 +1,10 @@
 import './globals.css';
 import { Inter as FontSans } from 'next/font/google';
-
 import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
-import Header from '@/components/Header';
-import {
-   ClerkProvider,
-   SignedIn,
-   SignedOut,
-   SignInButton,
-   UserButton
-} from '@clerk/nextjs';
+import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
+import Provider from './Provider';
 
 const fontSans = FontSans({
    subsets: ['latin'],
@@ -45,24 +38,7 @@ export default function RootLayout({
                   fontSans.variable
                )}
             >
-               <Header>
-                  <div
-                     className='flex w-fit items-center justify-center
-                  gap-2'
-                  >
-                     <p className='document-title'>
-                        This is a document title.{' '}
-                     </p>
-                  </div>
-
-                  <SignedOut>
-                     <SignInButton />
-                  </SignedOut>
-                  <SignedIn>
-                     <UserButton />
-                  </SignedIn>
-               </Header>
-               {children}
+               <Provider>{children}</Provider>
             </body>
          </html>
       </ClerkProvider>
