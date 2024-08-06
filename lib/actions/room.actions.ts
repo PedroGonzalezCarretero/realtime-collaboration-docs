@@ -44,7 +44,6 @@ export const getDocument = async ({
 }) => {
    try {
       const room = await liveblocks.getRoom(roomId);
-      console.log(room);
 
       // TODO: Check if user has access to the room
       // const hasAccess = Object.keys(room.usersAccesses).includes(userId);
@@ -70,5 +69,16 @@ export const updateDocument = async (roomId: string, title: string) => {
       return parseStringify(updatedRoom);
    } catch (error) {
       console.log('Error happened while updating a room', error);
+   }
+};
+
+export const getDocuments = async (email: string) => {
+   try {
+      const rooms = await liveblocks.getRooms({
+         userId: email
+      });
+      return parseStringify(rooms);
+   } catch (error) {
+      console.log('Error happened while getting rooms', error);
    }
 };

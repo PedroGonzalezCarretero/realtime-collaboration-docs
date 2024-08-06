@@ -105,7 +105,7 @@ const CollaborativeRoom = ({
                            height={24}
                            src={'/assets/icons/edit.svg'}
                            onClick={() => setEditing(true)}
-                           className='pointer'
+                           className='cursor-pointer'
                         />
                      )}
 
