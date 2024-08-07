@@ -1,5 +1,6 @@
 import AddDocumentBtn from '@/components/AddDocumentBtn';
 import Header from '@/components/Header';
+import { Badge } from '@/components/ui/badge';
 import { getDocuments } from '@/lib/actions/room.actions';
 import { dateConverter } from '@/lib/utils';
 import { SignedIn, UserButton } from '@clerk/nextjs';
@@ -7,6 +8,9 @@ import { currentUser } from '@clerk/nextjs/server';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { metadata } from '../layout';
+import { DeleteModal } from '@/components/DeleteModal';
+import Notifications from '@/components/Notifications';
 
 export default async function Home() {
    const clerkUser = await currentUser();
@@ -20,7 +24,7 @@ export default async function Home() {
       <main className='home-container'>
          <Header className='sticky left-0 top-0 z-50'>
             <div className='flex items-center gap-2 lg:gap-4'>
-               Notification
+               <Notifications />
                <SignedIn>
                   <UserButton />
                </SignedIn>
@@ -40,32 +44,47 @@ export default async function Home() {
 
                <ul className='document-ul'>
                   {roomDocuments.data.map(
-                     ({ id, metadata, createdAt }: any) => (
-                        <li key={id} className='document-list-item'>
-                           <Link
-                              href={`/documents/${id}`}
-                              className='flex flex-1 items-center gap-4'
-                           >
-                              <div className='hidden rounded-md bg-dark-500 p-2 sm:block'>
-                                 <Image
-                                    src={'/assets/icons/doc.svg'}
-                                    alt='file'
-                                    width={40}
-                                    height={40}
-                                 />
-                              </div>
+                     ({ id, metadata, createdAt }: any) => {
+                        const isOwner =
+                           metadata.email ===
+                           clerkUser.emailAddresses[0].emailAddress;
+                        return (
+                           <li key={id} className='document-list-item relative'>
+                              <Link
+                                 href={`/documents/${id}`}
+                                 className='flex flex-1 items-center gap-4'
+                              >
+                                 <div className='hidden rounded-md bg-dark-500 p-2 sm:block'>
+                                    <Image
+                                       src={'/assets/icons/doc.svg'}
+                                       alt='file'
+                                       width={40}
+                                       height={40}
+                                    />
+                                 </div>
 
-                              <div className='space-y-1'>
-                                 <p className='line-clamp-1 text-lg'>
-                                    {metadata.title}
-                                 </p>
-                                 <p className='text-sm font-light text-blue-100'>
-                                    Created at {dateConverter(createdAt)}
-                                 </p>
+                                 <div className='space-y-1'>
+                                    <div className='flex gap-2 items-end'>
+                                       <p className='line-clamp-1 text-lg'>
+                                          {metadata.title}
+                                       </p>
+                                    </div>
+                                    <p className='text-sm font-light text-blue-100'>
+                                       Created {dateConverter(createdAt)}
+                                    </p>
+                                 </div>
+                              </Link>
+                              {isOwner && <DeleteModal roomId={id} />}
+                              <div className='flex gap-2 items-start absolute justify-end right-3 top-2'>
+                                 <Badge
+                                    variant={isOwner ? 'secondary' : 'default'}
+                                 >
+                                    {isOwner ? 'Owner' : 'Collaborator'}
+                                 </Badge>
                               </div>
-                           </Link>
-                        </li>
-                     )
+                           </li>
+                        );
+                     }
                   )}
                </ul>
             </div>

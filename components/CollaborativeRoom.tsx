@@ -11,6 +11,7 @@ import { Input } from './ui/input';
 import Image from 'next/image';
 import { updateDocument } from '@/lib/actions/room.actions';
 import { currentUser } from '@clerk/nextjs/server';
+import ShareModal from './ShareModal';
 
 const CollaborativeRoom = ({
    roomId,
@@ -123,17 +124,16 @@ const CollaborativeRoom = ({
                      className='flex gap-4
                   '
                   >
-                     <Button
-                        size={'sm'}
-                        variant={'secondary'}
-                        className='bg-blue-600'
-                     >
-                        Share
-                     </Button>
-
                      <div className='flex w-full flex-1 justify-end gap-2 sm:gap-3'>
                         <ActiveCollaborators />
                      </div>
+
+                     <ShareModal
+                        roomId={roomId}
+                        collaborators={users}
+                        creatorId={roomMetadata.creatorId}
+                        currentUserType={currentUserType}
+                     />
 
                      <SignedOut>
                         <SignInButton />
