@@ -46,4 +46,29 @@ To get started with the project, follow these steps:
    ```bash
    git clone https://github.com/your-username/collaborative-document-editor.git
    cd collaborative-document-editor
-  ```
+
+
+2. **Install Dependencies**:
+   ```bash
+   npm install
+
+3. **Set up environment variables**:
+Create a .env.local file in the root directory and add the necessary environment variables for Clerk, Liveblocks, and Sentry.:
+   ```bash
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+   CLERK_SECRET_KEY=
+   
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   
+   LIVEBLOCKS_SECRET_KEY=
+   
+   SENTRY_AUTH_TOKEN=
+
+4. **Run the development server**:
+Create a .env.local file in the root directory and add the necessary environment variables for Clerk, Liveblocks, and Sentry.**:
+   ```bash
+   npm run dev
+
+
+Open http://localhost:3000 with your browser to see the result.
