@@ -34,9 +34,9 @@ Welcome to the Collaborative Document Editor project! This application is built 
 
 ## 🛠️ Tech Stack
 - **Frontend**: [Next.js](https://nextjs.org/) - A powerful React framework for building fast and scalable web applications.
-- **Authentication**: [Clerk](https://clerk.dev/) - A user authentication and management solution.
+- **Authentication**: [Clerk](https://clerk.com/) - A user authentication and management solution.
 - **Real-Time Features**: [Liveblocks](https://liveblocks.io/) - Real-time collaboration and synchronization.
-- **Document Editor**: [JSM-Editor](https://jsm-editor.com/) - A robust and feature-rich document editor.
+- **Document Editor**: [JSM-Editor](https://www.npmjs.com/package/jsm-editor?activeTab=readme) - A robust and feature-rich document editor.
 
 ## ⚙️ Installation
 
