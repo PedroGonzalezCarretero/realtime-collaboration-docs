@@ -44,8 +44,8 @@ To get started with the project, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/collaborative-document-editor.git
-   cd collaborative-document-editor
+   git clone https://github.com/PedroGonzalezCarretero/realtime-collaboration-docs.git
+   cd realtime-collaboration-docs
 
 
 2. **Install Dependencies**:
@@ -53,7 +53,7 @@ To get started with the project, follow these steps:
    npm install
 
 3. **Set up environment variables**:
-Create a .env.local file in the root directory and add the necessary environment variables for Clerk, Liveblocks, and Sentry.:
+Create a .env.local file in the root directory and add the necessary environment variables for Clerk, Liveblocks, and Sentry:
    ```bash
    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
    CLERK_SECRET_KEY=
@@ -66,7 +66,6 @@ Create a .env.local file in the root directory and add the necessary environment
    SENTRY_AUTH_TOKEN=
 
 4. **Run the development server**:
-Create a .env.local file in the root directory and add the necessary environment variables for Clerk, Liveblocks, and Sentry.**:
    ```bash
    npm run dev
 
